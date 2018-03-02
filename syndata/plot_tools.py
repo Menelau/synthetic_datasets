@@ -1,3 +1,9 @@
+# coding=utf-8
+
+# Author: Rafael Menelau Oliveira e Cruz <rafaelmenelau@gmail.com>
+#
+# License: MIT
+
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -114,3 +120,31 @@ def plot_classifier_decision(ax, clf, X, mode='line', **params):
     else:
        ax.contourf(xx, yy, Z, **params)
 
+
+def plot_classifier_probability_map(ax, clf, X, **params):
+    """Plot the decision border of a trained classifier.
+
+    Parameters
+    ----------
+    ax : The axis use to plot the decision border
+
+    clf : Classifier used in the plot. The classifier needs to implement the method predict(X) from sklearn
+
+    X : array of shape = [n_samples, 2]
+        The classification dataset considered in the plot
+
+    **params : Other parameters used to change the plot
+
+    Returns
+    -------
+    xx, yy : ndarray
+    """
+    xx, yy = make_grid(X[:, 0], X[:, 1])
+
+    if hasattr(clf, "decision_function"):
+        Z = clf.decision_function(np.c_[xx.ravel(), yy.ravel()])
+    else:
+        Z = clf.predict_proba(np.c_[xx.ravel(), yy.ravel()])[:, 1]
+
+    Z = Z.reshape(xx.shape)
+    ax.contourf(xx, yy, Z, alpha=0.8, **params)

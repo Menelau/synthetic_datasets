@@ -1,3 +1,22 @@
+# coding=utf-8
+
+# Author: Rafael Menelau Oliveira e Cruz <rafaelmenelau@gmail.com>
+#
+# License: MIT
+
+"""
+This file contains routines to generate several 2D classification datasets that can be used to test the performance of
+different machine learning algorithms.
+
+Datasets:
+- P2 Dataset
+- Circle and Square
+- Banana
+- Banana 2
+
+"""
+
+
 import numpy as np
 
 
