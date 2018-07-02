@@ -30,6 +30,7 @@ def plot_decision_P2(ax=None):
     ax.set_xlim((0, 1))
     ax.set_ylim((0, 1))
 
+
 def plot_decision_circle_square():
     """Plot the decision of the circle square dataset.
 
@@ -119,6 +120,8 @@ def plot_classifier_decision(ax, clf, X, mode='line', **params):
        ax.contour(xx, yy, Z, **params)
     else:
        ax.contourf(xx, yy, Z, **params)
+    ax.set_xlim((np.min(X[:, 0]), np.max(X[:, 0])))
+    ax.set_ylim((np.min(X[:, 1]), np.max(X[:, 0])))
 
 
 def plot_classifier_probability_map(ax, clf, X, **params):
@@ -148,3 +151,5 @@ def plot_classifier_probability_map(ax, clf, X, **params):
 
     Z = Z.reshape(xx.shape)
     ax.contourf(xx, yy, Z, alpha=0.8, **params)
+    ax.set_xlim((np.min(X[:, 0]), np.max(X[:, 0])))
+    ax.set_ylim((np.min(X[:, 1]), np.max(X[:, 0])))
